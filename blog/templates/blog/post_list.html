@@ -1,21 +1,23 @@
 <html>
-	<head>
-			<title>Muhammad's blog</title>
-	</head>
-	<body>
-		<div>
-			<h1><a href="/">Muhammad Blog</a></h1>
-		</div>
+{% extends 'blog/base.html' %}
+	
+{% block content %}
+            {% for post in posts %}
+            <div class="content container">
+            	<div class="row">
+            	<div class="col-md-8">
 
-		<div>
-			<p>published: 07.07.2018, 12:27</p>
-			<h2><a href="">My first post</a><h2>
-			<p>Yaaay! But so far, our template only ever displays exactly the sameinformation – whereas earlier we were talking abouttemplates as allowing us to display different information in the same format</p>
+			<div class="post">
+				<div class="date">
+					<p>published: {{ post.published_date }} </p>
+			</div>
+			<h1><a href="{% url 'post_detail' pk=post.pk %}"> {{ post.title}}</a> </h1>
+			<p>{{ post.text|linebreaksbr }}</p>
 		</div>
-		<div>
-			<p>published:07.07.2018, 12:31</p>
-			<h2><a href="">My second post</a></a></h2>
-			<p> Yaaay! But so far, our template only ever displays exactly the sameinformation – whereas earlier we were talking abouttemplates as allowing us to display different information in the same format</p>
-		</div>
-		
+  	{% endfor %}
+  {% endblock %}
+</div>
+</div>
+</div>
 </html>
+
